@@ -10,7 +10,7 @@ from scipy.fft import fft, ifft, fftfreq
 from scipy.signal import convolve, correlate
 from numpy.linalg import norm
 import numpy as np
-import generate_sine_wave as gs
+import señales.generate_sine_wave as gs
 from matplotlib import pyplot as plt
 
 #propiedad de convolucicón

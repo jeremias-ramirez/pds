@@ -8,7 +8,7 @@ Created on Wed Aug 11 17:17:31 2021
 
 
 from scipy.fft import fft, fftfreq
-from generate_sine_wave import generate_sine_wave
+from señales.generate_sine_wave import generate_sine_wave
 from matplotlib import pyplot as plt
 import numpy as np
 

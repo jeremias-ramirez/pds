@@ -21,7 +21,3 @@ frecuncia de muestreo 128 / 2 = 64, si esta multiplicado como con f2 entonce es
 """
 
 
-
-from generate_sine_wave import generate_sine_wave as gen_sin
-
-#gen_sin(freq, sample_rate, duration)
