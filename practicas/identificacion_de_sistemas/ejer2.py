@@ -1,12 +1,10 @@
-from operator import concat
 import numpy as np
-from scipy import signal
 from akaike import akaike
 from autocorrelacion import autocorrelacion
 from levinson_durbin import levison_durbin as levin
 from matplotlib import pyplot as plt
 from scipy.signal import freqz
-from scipy.fft import fft, ifft, fftfreq
+from scipy.fft import fft,  fftfreq
 import math
 
 reader = open("eeg.txt", "r")
@@ -18,17 +16,20 @@ r = autocorrelacion(eeg, p)
 (A, E) = levin(r, p)
 N = eeg.size
 [I, iMin] = akaike(E, N)
-
+print(iMin)
 b = [1]
 a = np.concatenate(([1], A[:, iMin-1]))
-w, h = freqz(b, a) 
+w, h = freqz(b, a) # w va de 0 a pi
+
 fm = 250
+w = (w * fm) / (2 * np.pi) # la escalo de  0 a fm/2
 
 SAMPLE_RATE = 1 / N
 yf = fft(eeg)
-xf = fftfreq(N)
-M = N// 2
-print(xf[:M+1])
-plt.plot(xf[:M] , np.abs(yf[:M]))
+N = len(yf)
+M = N // 2 + 1  # 
+xf = fm/N  * np.arange(M, step=1) 
+
+plt.plot(xf , np.abs(yf[:M]))
 plt.plot(w, np.abs(h))
 plt.show()
